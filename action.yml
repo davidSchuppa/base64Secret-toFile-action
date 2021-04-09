@@ -1,0 +1,29 @@
+name: 'Base64 secret to file'
+description: 'Reads a base64 encoded github secret into a file'
+inputs:
+  secret:  
+    description: 'The name of the github secret'
+    required: true
+    default: ''
+  filename:  
+    description: 'The name of the output file'
+    required: true
+    default: ''  
+  destination-path:  
+    description: 'The destination path of the output file'
+    required: true
+    default: ''
+
+runs:
+  using: "composite"
+  steps:
+    - run: echo ${{ inputs.secret }} > ./${{ inputs.filename }}.tmp
+      shell: bash
+    - run: base64 -d -i ./${{ inputs.filename }}.tmp -o ./${{ inputs.filename }}
+      shell: bash
+    - run: rm ./${{ inputs.filename }}.tmp
+      shell: bash
+    - run: mkdir -p ${{ inputs.destination-path }}
+      shell: bash
+    - run: mv ./${{ inputs.filename }} ${{ inputs.destination-path }}
+      shell: bash
