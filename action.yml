@@ -1,5 +1,8 @@
 name: 'Base64 secret to file'
 description: 'Reads a base64 encoded github secret into a file'
+branding:
+  icon: 'settings'
+  color: 'white'
 inputs:
   secret:  
     description: 'The name of the github secret'
