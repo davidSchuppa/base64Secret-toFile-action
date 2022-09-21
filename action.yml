@@ -22,7 +22,7 @@ runs:
   steps:
     - run: echo ${{ inputs.secret }} > ./${{ inputs.filename }}.tmp
       shell: bash
-    - run: base64 -d -i ./${{ inputs.filename }}.tmp -o ./${{ inputs.filename }}
+    - run: base64 -d -i ./${{ inputs.filename }}.tmp > ./${{ inputs.filename }}
       shell: bash
     - run: rm ./${{ inputs.filename }}.tmp
       shell: bash
