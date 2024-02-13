@@ -28,5 +28,5 @@ runs:
       shell: bash
     - run: mkdir -p ${{ inputs.destination-path }}
       shell: bash
-    - run: mv ./${{ inputs.filename }} ${{ inputs.destination-path }}
+    - run: mv ./${{ inputs.filename }} ${{ inputs.destination-path }} || echo "file is already in place"
       shell: bash
